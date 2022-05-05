@@ -11,7 +11,7 @@ public class RowCarFerry {
 	private Deque<Vehicle> vehicles;
 
 	public RowCarFerry(){
-		this.vehicles = new LinkedList<>();
+		this.vehicles = new LinkedList<Vehicle>();
 	}
 
 	/**

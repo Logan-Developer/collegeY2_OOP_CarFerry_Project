@@ -6,8 +6,8 @@ import java.util.TreeSet;
  * Represents a car ferry.
  */
 public class CarFerry {
-	private float length;
-	private float maxWeight;
+	private final float length;
+	private final float maxWeight;
 	private RowCarFerry rowRight;
 	private RowCarFerry rowLeft;
 	private TreeSet<Ticket> listing;
