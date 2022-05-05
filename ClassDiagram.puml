@@ -1,0 +1,105 @@
+@startuml
+!theme _none_
+
+class Driver {
+    - lastName: String
+    - firstName: String
+    - driverLicense: String
+
+    + <<create>> Driver(lastName: String, firstName: String, driverLicense: String)
+    + getLastName(): String
+    + getFirstName(): String
+    + getDriverLicense(): String
+    + toString(): String
+}
+
+abstract Vehicle {
+    - registration: String
+    - unloadedWeight: float
+    - length: float
+
+    + <<create>> Vehicle(registration: String, unloadedWeight: float, length: float, lastNameDriver: String, firstNameDriver: String, driverLicense: String)
+    + {abstract} getTotalWeight(): float
+    + getLength(): float
+    + getUnloadedWeight(): float
+    + getRegistration(): String
+    + getFullNameDriver(): String
+    + toString(): String
+}
+
+class Car {
+    - nbPassengers: int
+
+    + <<create>> Car(registration: String, unloadedWeight: float, length: float, nbPassengers: int, lastNameDriver: String, firstNameDriver: String, driverLicense: String)
+    + getNbPassengers(): int
+    + getTotalWeight(): float
+}
+
+class Truck {
+    - cargoWeight: float
+
+    + <<create>> Truck(registration: String, unloadedWeight: float, length: float, cargoWeight: float, lastNameDriver: String, firstNameDriver: String, driverLicense: String)
+    + getCargoWeight(): float
+    + getTotalWeight(): float
+}
+
+class CarFerry {
+    - length: float
+    - maxWeight: float
+    - listing: TreeSet<Ticket>
+    - noLeft: int
+    - noRight: int
+
+    + <<create>> CarFerry(length: float, maxWeight: float)
+    + getLength(): float
+    + getMaxWeight(): float
+    + getTotalWeight(): float
+    + getTotalLengthLeft(): float
+    + getTotalLengthRight(): float
+    + getTotalWeightLeft(): float
+    + getTotalWeightRight(): float
+    + getFirstVehicleLeft(): Vehicle
+    + getFirstVehicleRight(): Vehicle
+    + embarkVehicleLeft(vehicle: Vehicle): void
+    + embarkVehicleRight(vehicle: Vehicle): void
+    + disembarkVehicleLeft(): Vehicle
+    + disembarkVehicleRight(): Vehicle
+    - getTicketFromVehicle(vehicle: Vehicle): Ticket
+    + isEmpty(): boolean
+    + toString(): String
+}
+
+class RowCarFerry {
+    - vehicles: Deque<Vehicle>
+
+    + <<create>> RowCarFerry()
+    + getFirstVehicle(): Vehicle
+    + add(vehicle: Vehicle): void
+    + remove(): Vehicle
+    + getTotalWeight(): float
+    + getTotalLength(): float
+    + isEmpty(): boolean
+    + toString(): String
+}
+
+class Ticket <implements Comparable<Ticket>> {
+    - driverFullName: String
+    - row: char
+    - positionInRow: int
+    - price: float
+
+    + <<create>> Ticket(driverFullName: String, row: char, positionInRow: int, price: float, Vehicle: Vehicle)
+    + getRegistration(): String
+    + compareTo(ticket: Ticket): int
+    + toString(): String
+}
+
+Driver "1" <-- "*" Vehicle: is driven by
+Vehicle <|-- Car
+Vehicle <|--- Truck
+Vehicle "1" <---- "1" Ticket: is assigned to
+Vehicle"*" <---- "1" RowCarFerry: contains
+RowCarFerry "-rowLeft 1" <--- "1" CarFerry: is composed of
+RowCarFerry "-rowRight 1" <--- "1" CarFerry: is composed of
+Ticket "*" <--- "1" CarFerry: sells
+@enduml
