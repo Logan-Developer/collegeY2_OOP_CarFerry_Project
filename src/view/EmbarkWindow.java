@@ -7,15 +7,17 @@ public class EmbarkWindow extends JFrame {
     private JPanel vehicleTypePanel, formPanel;
     private JLabel vehicleTypeLabel, registrationLabel, nbPassengersLabel, weightVehicleLabel, lengthVehicleLabel,
             weightCargoTruckLabel, driverLastNameLabel, driverFirstNameLabel, driverLicenseLabel;
-    private JTextField vehicleTypeTextField, registrationTextField, nbPassengersTextField, weightVehicleTextField, lengthVehicleTextField,
+    private JTextField registrationTextField, nbPassengersTextField, weightVehicleTextField, lengthVehicleTextField,
                 weightCargoTruckTextField, driverLastNameTextField, driverFirstNameTextField, driverLicenseTextField;
     private JRadioButton vehicleTypeCarRadioButton, vehicleTypeTruckRadioButton;
 
     private ButtonGroup vehicleTypeButtonGroup;
+    private JButton submitButton;
 
     public EmbarkWindow() {
         this.setTitle("CAR FERRY - Embarquement");
-        this.setSize(600, 800);
+        this.setSize(540, 400);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 
@@ -35,47 +37,62 @@ public class EmbarkWindow extends JFrame {
         this.vehicleTypePanel.add(this.vehicleTypeCarRadioButton);
         this.vehicleTypePanel.add(this.vehicleTypeTruckRadioButton);
 
-        // Form panel
-        this.formPanel = new JPanel(new GridBagLayout());
+        // Create a form (each field is a label and a text field, and all fields are in column, with a gap between each field)
+        // Also, each textField has a different size
+        // Show label and text field on same line
+        this.formPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         this.formPanel.setBackground(Color.GREEN);
 
-        this.registrationLabel = new JLabel("Entrez immatriculation du véhicule (20 car maxi)");
+        this.registrationLabel = new JLabel("Entrez immatriculation du véhicule (20 car maxi) ");
+        this.nbPassengersLabel = new JLabel("Entrez le nombre de passagers ");
+        this.weightVehicleLabel = new JLabel("                                                                          Entrez le poids du véhicule (en tonnes) ");
+        this.lengthVehicleLabel = new JLabel("Entrez la longueur du véhicule (en mètres) ");
+        this.weightCargoTruckLabel = new JLabel("Entrez le poids de la cargaison du camion (en tonnes) ");
+        this.driverLastNameLabel = new JLabel("Entrez le nom du conducteur ");
+        this.driverFirstNameLabel = new JLabel("Entrez le prénom du conducteur ");
+        this.driverLicenseLabel = new JLabel("Entrez le numéro de permis de conduire ");
+
         this.registrationTextField = new JTextField(20);
-        this.nbPassengersLabel = new JLabel("Entrez le nombre de passagers");
-        this.nbPassengersTextField = new JTextField(3);
-        this.weightVehicleLabel = new JLabel("Entrez le poids du véhicule (en tonnes)");
-        this.weightVehicleTextField = new JTextField(5);
-        this.lengthVehicleLabel = new JLabel("Entrez la longueur du véhicule (en mètres)");
-        this.lengthVehicleTextField = new JTextField(5);
-        this.weightCargoTruckLabel = new JLabel("Entrez le poids de la cargaison du camion (en tonnes)");
-        this.weightCargoTruckTextField = new JTextField(5);
-        this.driverLastNameLabel = new JLabel("Entrez le nom du conducteur )");
+        this.nbPassengersTextField = new JTextField(2);
+        this.weightVehicleTextField = new JTextField(4);
+        this.lengthVehicleTextField = new JTextField(4);
+        this.weightCargoTruckTextField = new JTextField(4);
         this.driverLastNameTextField = new JTextField(20);
-        this.driverFirstNameLabel = new JLabel("Entrez le prénom du conducteur )");
         this.driverFirstNameTextField = new JTextField(20);
-        this.driverLicenseLabel = new JLabel("Entrez le numéro de permis de conduire )");
         this.driverLicenseTextField = new JTextField(20);
 
         this.formPanel.add(this.registrationLabel);
         this.formPanel.add(this.registrationTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.nbPassengersLabel);
         this.formPanel.add(this.nbPassengersTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.weightVehicleLabel);
         this.formPanel.add(this.weightVehicleTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.lengthVehicleLabel);
         this.formPanel.add(this.lengthVehicleTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.weightCargoTruckLabel);
         this.formPanel.add(this.weightCargoTruckTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.driverLastNameLabel);
         this.formPanel.add(this.driverLastNameTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.driverFirstNameLabel);
         this.formPanel.add(this.driverFirstNameTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
         this.formPanel.add(this.driverLicenseLabel);
         this.formPanel.add(this.driverLicenseTextField);
+        this.formPanel.add(Box.createVerticalStrut(30));
+
+        // Create a button to submit the form
+        this.submitButton = new JButton("Valider");
 
         // Add panels to frame
         this.add(this.vehicleTypePanel, BorderLayout.NORTH);
         this.add(this.formPanel, BorderLayout.CENTER);
+        this.add(this.submitButton, BorderLayout.SOUTH);
 
         setVisible(true);
     }
