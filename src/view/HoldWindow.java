@@ -1,18 +1,24 @@
 package view;
 
+import controller.Controller;
+import model.Vehicle;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class HoldWindow extends JFrame {
 
     private JPanel leftRow, rightRow;
-    private JList<String> leftRowList, rightRowList;
+    private JList<Object> leftRowList, rightRowList;
 
-    public HoldWindow() {
+    private Controller controller;
+
+    public HoldWindow(Controller controller) {
         this.setTitle("Cale du ferry");
         this.setSize(430, 240);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         this.setLayout(new GridLayout(1, 2));
+        this.controller = controller;
 
         // left row
         this.leftRow = new JPanel(new FlowLayout());
@@ -35,7 +41,9 @@ public class HoldWindow extends JFrame {
         // Add panels to frame
         this.add(this.leftRow);
         this.add(this.rightRow);
+    }
 
-        this.setVisible(true);
+    public void updateLeftRow(Object[] vehicles) {
+        this.leftRowList = new JList<>(vehicles);
     }
 }

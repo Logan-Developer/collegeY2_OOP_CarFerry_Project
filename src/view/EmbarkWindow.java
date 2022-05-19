@@ -1,5 +1,7 @@
 package view;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,12 +16,14 @@ public class EmbarkWindow extends JFrame {
     private ButtonGroup vehicleTypeButtonGroup;
     private JButton submitButton;
 
-    public EmbarkWindow() {
+    private Controller controller;
+
+    public EmbarkWindow(Controller controller) {
         this.setTitle("CAR FERRY - Embarquement");
-        this.setSize(540, 400);
+        this.setSize(600, 400);
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
+        this.controller = controller;
 
         // Vehicle type panel
         this.vehicleTypePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -45,7 +49,7 @@ public class EmbarkWindow extends JFrame {
 
         this.registrationLabel = new JLabel("Entrez immatriculation du véhicule (20 car maxi) ");
         this.nbPassengersLabel = new JLabel("Entrez le nombre de passagers ");
-        this.weightVehicleLabel = new JLabel("                                                                          Entrez le poids du véhicule (en tonnes) ");
+        this.weightVehicleLabel = new JLabel("                                Entrez le poids du véhicule (en tonnes) ");
         this.lengthVehicleLabel = new JLabel("Entrez la longueur du véhicule (en mètres) ");
         this.weightCargoTruckLabel = new JLabel("Entrez le poids de la cargaison du camion (en tonnes) ");
         this.driverLastNameLabel = new JLabel("Entrez le nom du conducteur ");
@@ -57,6 +61,7 @@ public class EmbarkWindow extends JFrame {
         this.weightVehicleTextField = new JTextField(4);
         this.lengthVehicleTextField = new JTextField(4);
         this.weightCargoTruckTextField = new JTextField(4);
+        this.weightCargoTruckTextField.setEnabled(false);
         this.driverLastNameTextField = new JTextField(20);
         this.driverFirstNameTextField = new JTextField(20);
         this.driverLicenseTextField = new JTextField(20);
@@ -94,6 +99,53 @@ public class EmbarkWindow extends JFrame {
         this.add(this.formPanel, BorderLayout.CENTER);
         this.add(this.submitButton, BorderLayout.SOUTH);
 
-        setVisible(true);
+        // Add action listeners
+        this.submitButton.addActionListener(this.controller);
+        this.vehicleTypeCarRadioButton.addActionListener(this.controller);
+        this.vehicleTypeTruckRadioButton.addActionListener(this.controller);
+    }
+
+    public JButton getSubmitButton() {
+        return submitButton;
+    }
+
+    public JTextField getRegistrationTextField() {
+        return registrationTextField;
+    }
+
+    public JTextField getNbPassengersTextField() {
+        return nbPassengersTextField;
+    }
+
+    public JTextField getWeightVehicleTextField() {
+        return weightVehicleTextField;
+    }
+
+    public JTextField getLengthVehicleTextField() {
+        return lengthVehicleTextField;
+    }
+
+    public JTextField getWeightCargoTruckTextField() {
+        return weightCargoTruckTextField;
+    }
+
+    public JTextField getDriverLastNameTextField() {
+        return driverLastNameTextField;
+    }
+
+    public JTextField getDriverFirstNameTextField() {
+        return driverFirstNameTextField;
+    }
+
+    public JTextField getDriverLicenseTextField() {
+        return driverLicenseTextField;
+    }
+
+    public JRadioButton getVehicleTypeCarRadioButton() {
+        return vehicleTypeCarRadioButton;
+    }
+
+    public JRadioButton getVehicleTypeTruckRadioButton() {
+        return vehicleTypeTruckRadioButton;
     }
 }

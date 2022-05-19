@@ -1,5 +1,7 @@
 package view;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,11 +13,26 @@ public class MainWindow extends JFrame {
     private JLabel titleLabel;
     private JButton embarkBtn, disembarkBtn;
 
+    private HoldWindow holdWindow;
+    private EmbarkWindow embarkWindow;
+
+    private Controller controller;
+
     public MainWindow() {
         this.setTitle("CAR FERRY");
         this.setSize(400, 200);
+        this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
+
+        this.controller = new Controller(this);
+
+        // Instantiate other windows
+        this.holdWindow = new HoldWindow(this.controller);
+        this.embarkWindow = new EmbarkWindow(this.controller);
+
+        this.controller.setEmbarkWindow(this.embarkWindow);
+        this.controller.setHoldWindow(this.holdWindow);
 
         // Add the menu bar
         this.menuBar = new JMenuBar();
@@ -45,10 +62,25 @@ public class MainWindow extends JFrame {
        this.add(this.buttonsPanel);
 
         // Add listeners
+        this.embarkBtn.addActionListener(this.controller);
+        this.disembarkBtn.addActionListener(this.controller);
+        this.menuItem.addActionListener(this.controller);
         this.setVisible(true);
     }
 
     public JMenuItem getMenuItem() {
         return menuItem;
+    }
+
+    public JButton getEmbarkBtn() {
+        return embarkBtn;
+    }
+
+    public void setHoldWindowVisibility(boolean visible) {
+        this.holdWindow.setVisible(visible);
+    }
+
+    public void setEmbarkWindowVisibility(boolean visible) {
+        this.embarkWindow.setVisible(visible);
     }
 }

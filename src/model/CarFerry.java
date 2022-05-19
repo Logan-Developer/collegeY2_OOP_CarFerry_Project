@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayDeque;
 import java.util.TreeSet;
 
 /**
@@ -64,6 +65,14 @@ public class CarFerry {
 		return this.rowRight.getFirstVehicle();
 	}
 
+	public ArrayDeque<Vehicle> getVehiclesLeft(){
+		return this.rowLeft.getVehicles();
+	}
+
+	public ArrayDeque<Vehicle> getVehiclesRight(){
+		return this.rowRight.getVehicles();
+	}
+
 	/**
 	 * Adds a vehicle to the left row.
 	 * @param vehicle the vehicle to be added
@@ -116,6 +125,16 @@ public class CarFerry {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Check if a vehicle is in the car ferry.
+	 * @param vehicle the vehicle
+	 * @return true if the vehicle is in the car ferry, false otherwise
+	 */
+	public boolean isInCarFerry(Vehicle vehicle){
+		Ticket ticket = getTicketFromVehicle(vehicle);
+		return ticket != null;
 	}
 
 	/**

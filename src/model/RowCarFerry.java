@@ -1,17 +1,16 @@
 package model;
 
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 
 /**
  * Represents a row of a ferry.
  * The first vehicle added to the row is the first to be removed.
  */
 public class RowCarFerry {
-	private Deque<Vehicle> vehicles;
+	private ArrayDeque<Vehicle> vehicles;
 
 	public RowCarFerry(){
-		this.vehicles = new LinkedList<>();
+		this.vehicles = new ArrayDeque<>();
 	}
 
 	/**
@@ -20,6 +19,10 @@ public class RowCarFerry {
 	 */
 	public Vehicle getFirstVehicle(){
 		return this.vehicles.peekLast();
+	}
+
+	public ArrayDeque<Vehicle> getVehicles() {
+		return vehicles;
 	}
 
 	/**
