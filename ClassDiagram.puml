@@ -94,6 +94,89 @@ class Ticket <implements Comparable<Ticket>> {
     + toString(): String
 }
 
+class Controller <implements ActionListener, ListSelectionListener> {
+    + <<create>> Controller(MainWindow: MainWindow)
+    + actionPerformed(actionEvent: ActionEvent): void
+    + valueChanged(listSelectionEvent: ListSelectionEvent): void
+    + displayDialog(view JFrame, title: String, message: String, dialogType: int): void
+    + verifyFieldsEmbarkVehicle(): void
+    + embarkVehicle(Vehicle: Vehicle): void
+    + embarkVehicle(): void
+    + disembarkVehicle(): void
+}
+
+class EmbarkWindow <extends JFrame> {
+    - vehicleTypePanel: JPanel
+    - formPanel: JPanel
+    - vehicleTypeLabel: JLabel
+    - registrationLabel: JLabel
+    - nbPassengersLabel: JLabel
+    - weightVehicleLabel: JLabel
+    - lengthVehicleLabel: JLabel
+    - weightCargoTruckLabel: JLabel
+    - driverLastNameLabel: JLabel
+    - driverFirstNameLabel: JLabel
+    - driverLicenseLabel: JLabel
+    - registrationTextField: JTextField
+    - nbPassengersTextField: JTextField
+    - weightVehicleTextField: JTextField
+    - lengthVehicleTextField: JTextField
+    - weightCargoTruckTextField: JTextField
+    - driverLastNameTextField: JTextField
+    - driverFirstNameTextField: JTextField
+    - driverLicenseTextField: JTextField
+    - vehicleTypeCarRadioButton: JRadioButton
+    - vehicleTypeTruckRadioButton: JRadioButton
+    - vehicleTypeButtonGroup: ButtonGroup
+    - submitButton: JButton
+
+    + <<create>> EmbarkWindow(controller: Controller)
+    + getSubmitButton(): JButton
+    + getRegistrationTextField(): JTextField
+    + getNbPassengersTextField(): JTextField
+    + getWeightVehicleTextField(): JTextField
+    + getLengthVehicleTextField(): JTextField
+    + getWeightCargoTruckTextField(): JTextField
+    + getDriverLastNameTextField(): JTextField
+    + getDriverFirstNameTextField(): JTextField
+    + getDriverLicenseTextField(): JTextField
+    + getVehicleTypeCarRadioButton(): JRadioButton
+    + getVehicleTypeTruckRadioButton(): JRadioButton
+}
+
+class HoldWindow <extends JFrame> {
+    - leftRow: JPanel
+    - rightRow: JPanel
+    - leftRowList: JList<Object>
+    - rightRowList: JList<Object>
+
+    + <<create>> HoldWindow(controller: Controller, carFerry: CarFerry)
+    + getLeftRowList(): JList<Object>
+    + getRightRowList(): JList<Object>
+}
+
+class MainWindow <extends JFrame> {
+    - menuBar: JMenuBar
+    - menu: JMenu
+    - menuItem: JMenuItem
+    - titlePanel: JPanel
+    - buttonsPanel: JPanel
+    - titleLabel: JLabel
+    - embarkBtn: JButton
+    - disembarkBtn: JButton
+
+    + <<create>> MainWindow()
+    + getMenuItem(): JMenuItem
+    + getEmbarkBtn(): JButton
+    + getDisembarkBtn(): JButton
+    + getController(): Controller
+}
+
+class ProjectUtils {
+    + {static} isInt(s: String): boolean
+    + {static} isFloat(s: String): boolean
+}
+
 Driver "1" <-- "*" Vehicle: is driven by
 Vehicle <|-- Car
 Vehicle <|--- Truck
@@ -102,4 +185,11 @@ Vehicle"*" <---- "1" RowCarFerry: contains
 RowCarFerry "-rowLeft 1" <--- "1" CarFerry: is composed of
 RowCarFerry "-rowRight 1" <--- "1" CarFerry: is composed of
 Ticket "*" <--- "1" CarFerry: sells
+
+Controller "1" -> "1" CarFerry: interacts with
+Controller "1" -- "1" EmbarkWindow: listens events of
+Controller "1" -- "1" HoldWindow: listens events of
+HoldWindow "1" --> "1" CarFerry: get data from
+Controller "1" -- "1" MainWindow: listens events of
+Controller --> ProjectUtils: uses
 @enduml

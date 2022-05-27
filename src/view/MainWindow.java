@@ -13,9 +13,6 @@ public class MainWindow extends JFrame {
     private JLabel titleLabel;
     private JButton embarkBtn, disembarkBtn;
 
-    private HoldWindow holdWindow;
-    private EmbarkWindow embarkWindow;
-
     private Controller controller;
 
     public MainWindow() {
@@ -26,13 +23,6 @@ public class MainWindow extends JFrame {
         this.setLayout(new BorderLayout());
 
         this.controller = new Controller(this);
-
-        // Instantiate other windows
-        this.holdWindow = new HoldWindow(this.controller);
-        this.embarkWindow = new EmbarkWindow(this.controller);
-
-        this.controller.setEmbarkWindow(this.embarkWindow);
-        this.controller.setHoldWindow(this.holdWindow);
 
         // Add the menu bar
         this.menuBar = new JMenuBar();
@@ -76,11 +66,9 @@ public class MainWindow extends JFrame {
         return embarkBtn;
     }
 
-    public void setHoldWindowVisibility(boolean visible) {
-        this.holdWindow.setVisible(visible);
-    }
+    public JButton getDisembarkBtn() {return disembarkBtn;}
 
-    public void setEmbarkWindowVisibility(boolean visible) {
-        this.embarkWindow.setVisible(visible);
+    public Controller getController() {
+        return this.controller;
     }
 }

@@ -98,9 +98,9 @@ public class CarFerry {
 	 */
 	public Vehicle disembarkVehicleLeft(){
 		this.noLeft--;
-		Vehicle vehicleToDebark = this.rowLeft.removeVehicle();
-		this.listing.remove(getTicketFromVehicle(vehicleToDebark));
-		return vehicleToDebark;
+		Vehicle vehicleToDisembark = this.rowLeft.removeVehicle();
+		this.listing.remove(getTicketFromVehicle(vehicleToDisembark));
+		return vehicleToDisembark;
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class CarFerry {
 	 */
 	public Vehicle disembarkVehicleRight(){
 		this.noRight--;
-		Vehicle vehicleToDebark = this.rowRight.removeVehicle();
-		this.listing.remove(getTicketFromVehicle(vehicleToDebark));
-		return vehicleToDebark;
+		Vehicle vehicleToDisembark = this.rowRight.removeVehicle();
+		this.listing.remove(getTicketFromVehicle(vehicleToDisembark));
+		return vehicleToDisembark;
 	}
 
 	/**

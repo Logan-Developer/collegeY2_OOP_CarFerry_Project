@@ -18,9 +18,9 @@ public class ProjectUtils {
     }
 
     /**
-     * Check if a string is an int
+     * Check if a string is a float
      * @param s The string to check
-     * @return True if it's an int, false otherwise
+     * @return True if it's a float, false otherwise
      */
     public static boolean isFloat(String s){
         if(s == null) return false;

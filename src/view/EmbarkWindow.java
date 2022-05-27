@@ -103,6 +103,8 @@ public class EmbarkWindow extends JFrame {
         this.submitButton.addActionListener(this.controller);
         this.vehicleTypeCarRadioButton.addActionListener(this.controller);
         this.vehicleTypeTruckRadioButton.addActionListener(this.controller);
+
+        this.setVisible(true);
     }
 
     public JButton getSubmitButton() {
