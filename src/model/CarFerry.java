@@ -118,7 +118,7 @@ public class CarFerry {
 	 * @param vehicle the vehicle
 	 * @return the ticket corresponding to the vehicle
 	 */
-	private Ticket getTicketFromVehicle(Vehicle vehicle){
+	public Ticket getTicketFromVehicle(Vehicle vehicle){
 		for (Ticket t : this.listing){
 			if (t.getVehicle().equals(vehicle)){
 				return t;

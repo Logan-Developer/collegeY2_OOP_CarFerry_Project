@@ -30,10 +30,6 @@ public class Ticket implements Comparable<Ticket> {
 
     @Override
     public String toString() {
-        return "{" + driverFullName +
-                ", row=" + row +
-                ", positionInRow=" + positionInRow +
-                ", price=" + price +
-                '}';
+        return "["+this.row+this.positionInRow+" "+this.driverFullName+" : "+ this.vehicle.getRegistration()+" : "+ this.price+"euros ]";
     }
 }

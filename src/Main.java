@@ -1,6 +1,12 @@
-
 import controller.Controller;
+import controller.EmbarkException;
+import model.Car;
+import model.Truck;
+import model.Vehicle;
 import view.MainWindow;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
