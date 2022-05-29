@@ -177,6 +177,10 @@ class ProjectUtils {
     + {static} isFloat(s: String): boolean
 }
 
+class EmbarkException <extends Exception> {
+    + <<create>> EmbarkException(message: String)
+}
+
 Driver "1" <-- "*" Vehicle: is driven by
 Vehicle <|-- Car
 Vehicle <|--- Truck
@@ -192,4 +196,5 @@ Controller "1" -- "1" HoldWindow: listens events of
 HoldWindow "1" --> "1" CarFerry: get data from
 Controller "1" -- "1" MainWindow: listens events of
 Controller --> ProjectUtils: uses
+Controller --> EmbarkException: throws
 @enduml
