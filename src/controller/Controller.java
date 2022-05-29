@@ -63,7 +63,7 @@ public class Controller implements ActionListener, ListSelectionListener {
             if (disembarkedVehicle == null) {
                 displayDialog(this.mainWindow, "Embaquement", "La cale est vide", JOptionPane.WARNING_MESSAGE);
             }else{
-                displayDialog(this.mainWindow, "Embaquement", "Débarquement "+disembarkedVehicle.getRegistration(), JOptionPane.WARNING_MESSAGE);
+                displayDialog(this.mainWindow, "Embaquement", "Débarquement "+disembarkedVehicle.getRegistration(), JOptionPane.INFORMATION_MESSAGE);
             }
         }
 
